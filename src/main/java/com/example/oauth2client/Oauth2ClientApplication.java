@@ -22,7 +22,7 @@ class IndexController{
 
     @GetMapping("/")
     public String index(@AuthenticationPrincipal OAuth2User user){
-        return "<h1>Hello, " + user.getAttributes().get("login") + "</h1>";
+        return "<h1>Hello, " + user.getAttributes().get("nickname") + "</h1>";
     }
 
     @GetMapping("user")
