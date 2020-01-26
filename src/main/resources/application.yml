@@ -2,23 +2,3 @@ spring:
   jackson:
     serialization:
       INDENT_OUTPUT: true
-  security:
-    oauth2:
-      client:
-        registration:
-          my-app:
-            provider: auth0
-            client-id: mTRDwuz9sT3GkkA8SHf2pt4eNHXqnpYB
-            client-secret: Oc0TFAqcGLVdBJBebCqEqIzy9Rnvc1PsSgTPrDuh4-cDVhWhKjkcL07ZAQze62bk
-            client-authentication-type: method
-            authorization-grant-type: authorization_code
-            scope: profile,openid,email,phone,address
-            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
-            client-name: OAuth client app
-        provider:
-          auth0:
-            authorization-uri: https://activx.auth0.com/authorize
-            token-uri: https://activx.auth0.com/oauth/token
-            user-info-uri: https://activx.auth0.com/userinfo
-            jwk-set-uri: https://activx.auth0.com/.well-known/jwks.json
-            user-name-attribute: sub
