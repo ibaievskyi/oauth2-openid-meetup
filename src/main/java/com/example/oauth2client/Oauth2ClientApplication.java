@@ -29,4 +29,5 @@ class IndexController{
     public Map<String, Object> user(@AuthenticationPrincipal OAuth2User user){
         return user.getAttributes();
     }
+
 }
