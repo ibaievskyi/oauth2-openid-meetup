@@ -1,0 +1,12 @@
+spring:
+  jackson:
+    serialization:
+      INDENT_OUTPUT: true
+  security:
+    oauth2:
+      client:
+        registration:
+          github:
+            client-id: someid
+            client-secret: somesecret
+
