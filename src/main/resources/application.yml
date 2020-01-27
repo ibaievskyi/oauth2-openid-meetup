@@ -6,7 +6,7 @@ spring:
     oauth2:
       client:
         registration:
-          github:
+          facebook:
             client-id: someid
             client-secret: somesecret
 
