@@ -6,19 +6,24 @@ spring:
     oauth2:
       client:
         registration:
-          my-app:
-            provider: auth0
+          my-app: # Это фактически registrationId которое используется по коду и также используется в redirect-uri ниже
+            provider: auth0 # название провайдера который мы зарегистрируем позже ниже
             client-id: mTRDwuz9sT3GkkA8SHf2pt4eNHXqnpYB
             client-secret: Oc0TFAqcGLVdBJBebCqEqIzy9Rnvc1PsSgTPrDuh4-cDVhWhKjkcL07ZAQze62bk
             client-authentication-type: method
             authorization-grant-type: authorization_code
             scope: profile,openid,email,phone,address
-            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
-            client-name: OAuth client app
+            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}" #здесь необходим шаблон как указано,
+                                                                         #Spring Secuirity автоматом резолвит его опираясь на registrationId
+                                                                         # этот шаблон нужен для определения callback url
+                                                                         # callback url в последствии мы должны зарегистрировать на стороне Auth0
+                                                                         # в настройках приложения Allowed Callback URLs
+
+            client-name: OAuth client app # Просто логическое имя клиенту
         provider:
           auth0:
             authorization-uri: https://activx.auth0.com/authorize
             token-uri: https://activx.auth0.com/oauth/token
             user-info-uri: https://activx.auth0.com/userinfo
             jwk-set-uri: https://activx.auth0.com/.well-known/jwks.json
-            user-name-attribute: sub
+            user-name-attribute: sub # атрибут id token (или user info объекта) для определения какое поле будет userName
