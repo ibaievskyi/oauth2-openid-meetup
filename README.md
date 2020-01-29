@@ -11,6 +11,17 @@
 - использование Access Token ветка using-access-token-auth0
 
 
+
+## AUTH0 RULE
+Зайдите в dashboard Auth0 раздел Rules и создайте новое правило с этим содержанием:
+```
+    function (user, context, callback) {
+      const namespace = 'http://localhost/';
+      context.idToken[namespace + 'authorities'] = ["DELETE_MESSAGE", "CREATE_MESSAGE"];  
+      callback(null, user, context);
+    }
+```
+
 ## Dependencies
 ```
         <dependency>
