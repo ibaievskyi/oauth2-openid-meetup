@@ -22,11 +22,19 @@ public class Oauth2ClientApplication {
         SpringApplication.run(Oauth2ClientApplication.class, args);
     }
 
+    /**
+     * Здесь используется репозиторий ин-мемори, но можно реализовать любую свою
+     * @return
+     */
     @Bean
     public ClientRegistrationRepository clientRegistrationRepository(){
         return new InMemoryClientRegistrationRepository(auth0());
     }
 
+    /**
+     * Типичный пример конфигурации клиента с помощью Java-config
+     * @return
+     */
     private ClientRegistration auth0(){
         return ClientRegistration.withRegistrationId("auth0")
                 .clientName("OAuth2 client")
@@ -58,6 +66,11 @@ class IndexController{
         return "<h1>Hello, " + user.getAttributes().get("nickname") + "</h1>";
     }
 
+    /**
+     * Просто показывает  аттрибуты у юзера, взяты либо с эендпоинта userinfo либо с idToken
+     * @param user
+     * @return
+     */
     @GetMapping("user")
     public Map<String, Object> user(@AuthenticationPrincipal OAuth2User user){
         return user.getAttributes();
